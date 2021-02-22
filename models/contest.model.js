@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 
 const contestScheme = mongoose.Schema({
-  name: String,
+  title: String,
+  start: Date,
+  finish: Date,
+  thumbnail: String,
+  reward: [],
   tags: [],
-  author: String,
-  date: Date,
-  images: []
+  sponsors: [],
+  images: [],
+  text: String
+
 });
 
 let Contest = mongoose.model('Contest', contestScheme);

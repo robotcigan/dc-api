@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.set('view engine', 'pug');
-app.use(express.static('public'));
+app.use('/media', express.static('media'));
 
 app.use(router);
 
