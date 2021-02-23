@@ -16,10 +16,14 @@ module.exports.createContest = (contest) => {
   return Contest.create(contest);
 }
 
-
 // Remove contest
 module.exports.removeContest = (id) => {
   return Contest.findByIdAndRemove(id);
+}
+
+// Edit contest
+module.exports.editContest = (id, contest) => {
+  return Contest.findByIdAndUpdate(id, contest);
 }
 
 

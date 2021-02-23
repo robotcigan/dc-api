@@ -38,16 +38,25 @@ router.post(`${config.apiUrl}/save-contest`, (req, res, next) => {
 });
 
 
-// Remove post
-router.delete(`${config.apiUrl}/remove-contest/:id`, (req,res, next) => {
-  // console.log(req.params)
-  // res.send(200)
+// Remove contest
+router.delete(`${config.apiUrl}/remove-contest/:id`, (req, res, next) => {
   contestService.removeContest(req.params.id)
-    .then(contest => console.log('was deleted', contest))
+    .then(contest => {
+      res.send({contest: contest});
+      console.log('was deleted', contest)
+    })
     .catch(err => console.log(err))
-  // res.send('are you sure?')
-  // console.log('Someone wants to remove contest')
 })
 
+
+// Edit contest
+router.put(`${config.apiUrl}/edit-contest/:id`, (req, res, next) => {
+  contestService.editContest(req.params.id, req.body)
+    .then(contest => {
+      res.send({contest: contest});
+      console.log('contest was updated', contest);
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;
