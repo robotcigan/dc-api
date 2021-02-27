@@ -4,6 +4,7 @@ const contestScheme = mongoose.Schema({
   title: String,
   start: Date,
   finish: Date,
+  created: Date,
   thumbnail: String,
   reward: [],
   tags: [],

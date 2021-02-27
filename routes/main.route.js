@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const contestService = require('../services/contest.service');
 const config = require('../configs/config');
+const moment = require('moment');
 
 // Index page
 router.get(`${config.apiUrl}/`, (req, res, next) => {
@@ -12,8 +13,6 @@ router.get(`${config.apiUrl}/contests`, (req, res, next) => {
   contestService.findContests()
     .then(contests => {
       res.send(contests);
-      // console.log(contests)
-      console.log('enter')
     })
     .catch(err => next(err));
 });
@@ -23,6 +22,11 @@ router.get(`${config.apiUrl}/contests`, (req, res, next) => {
 router.get(`${config.apiUrl}/contest/:id`, (req, res, next) => {
   contestService.findContestById(req.params.id)
     .then(contest => {
+      // contest.created = moment(contest.created).locale('ru').format('DD MMMM YYYY, h:mm:ss a');
+      // contest.created = '2022-02-27T20:27:48.341Z,';
+      let shit = contest;
+      shit.created = 4;
+      console.log(shit)
       res.send({contest: contest});
     })
     .catch(err => next(err));
@@ -32,6 +36,7 @@ router.get(`${config.apiUrl}/contest/:id`, (req, res, next) => {
 // Save post
 router.post(`${config.apiUrl}/save-contest`, (req, res, next) => {
   let contest = req.body;
+  contest.created = moment();
   contestService.createContest(contest)
     .then( () => res.send(contest) )
     .catch(err => next(err));

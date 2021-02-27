@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const Contest = require('../models/contest.model.js');
 
 // Find all contests
