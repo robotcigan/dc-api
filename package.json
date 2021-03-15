@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix admin",
+    "dev": "concurrently 'npm run server' 'npm run client'"
   },
   "author": "",
   "license": "ISC",
@@ -13,9 +15,10 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.14",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
-    "moment": "^2.29.1"
+    "concurrently": "^6.0.0"
   }
 }

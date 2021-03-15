@@ -1,5 +1,6 @@
 // const mongoose = require('mongoose');
 const Contest = require('../models/contest.model.js');
+const moment = require('moment');
 
 // Find all contests
 module.exports.findContests = () => {
@@ -19,6 +20,18 @@ module.exports.createContest = (contest) => {
 // Remove contest
 module.exports.removeContest = (id) => {
   return Contest.findByIdAndRemove(id);
+}
+
+// Remove multiple contests
+module.exports.removeMultipleContests = (removeMultiple) => {
+  console.log('remove multiple contests', removeMultiple)
+  return Contest.deleteMany({ _id: removeMultiple })
+  // return 'from server'
+  // return Contest.deleteMany({_id: [
+  //   '604a6219bfa39e3d082ea8c7',
+  //   '603aaa2ffab0ea1d9865103f',
+  //   '603aaa019cc8b34940829db2'
+  // ]})
 }
 
 // Edit contest

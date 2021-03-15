@@ -14,7 +14,8 @@ router.get(`${config.apiUrl}/contests`, (req, res, next) => {
     .then(contests => {
       res.send(contests);
     })
-    .catch(err => next(err));
+    // .catch(err => next(err));
+    .catch(err => console.log(err));
 });
 
 
@@ -22,14 +23,15 @@ router.get(`${config.apiUrl}/contests`, (req, res, next) => {
 router.get(`${config.apiUrl}/contest/:id`, (req, res, next) => {
   contestService.findContestById(req.params.id)
     .then(contest => {
-      // contest.created = moment(contest.created).locale('ru').format('DD MMMM YYYY, h:mm:ss a');
-      // contest.created = '2022-02-27T20:27:48.341Z,';
-      let shit = contest;
-      shit.created = 4;
-      console.log(shit)
-      res.send({contest: contest});
+      let formatedDateCreated = moment(contest.created).locale('ru').format('DD MMMM YYYY, h:mm');
+      // contest.created = '2022-02-27T20:23:11.391Z';
+      // let shit = contest;
+      // shit.created = 4;
+      // console.log(contest.created);
+      res.send({ contest: contest, formatedDateCreated: formatedDateCreated });
     })
-    .catch(err => next(err));
+    // .catch(err => next(err));
+    .catch(err => console.log(err))
 });
 
 
@@ -39,7 +41,7 @@ router.post(`${config.apiUrl}/save-contest`, (req, res, next) => {
   contest.created = moment();
   contestService.createContest(contest)
     .then( () => res.send(contest) )
-    .catch(err => next(err));
+    .catch(err => console.log(err));
 });
 
 
@@ -51,6 +53,14 @@ router.delete(`${config.apiUrl}/remove-contest/:id`, (req, res, next) => {
       console.log('was deleted', contest)
     })
     .catch(err => console.log(err))
+});
+
+// Remove multiple posts
+router.post(`${config.apiUrl}/remove-contests`, (req, res, next) => {
+  console.log(req.body)
+  contestService.removeMultipleContests(req.body)
+    .then(contests => res.send(contests))
+    .catch(err => console.log(err));
 })
 
 
