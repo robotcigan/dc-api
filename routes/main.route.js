@@ -60,7 +60,7 @@ router.post(`${config.apiUrl}/remove-contests`, (req, res, next) => {
   console.log(req.body)
   contestService.removeMultipleContests(req.body)
     .then(contests => res.send(contests))
-    .catch(err => console.log(err));
+    .catch(err => { console.log(err); res.send(err) });
 })
 
 

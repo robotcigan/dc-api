@@ -19,11 +19,11 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.set('view engine', 'pug');
+// app.set('view engine', 'pug');
 app.use('/media', express.static('media'));
 
 app.use(router);
