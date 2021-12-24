@@ -24,13 +24,8 @@ router.get(`${config.apiUrl}/contest/:id`, (req, res, next) => {
   contestService.findContestById(req.params.id)
     .then(contest => {
       let formatedDateCreated = moment(contest.created).locale('ru').format('DD MMMM YYYY, h:mm');
-      // contest.created = '2022-02-27T20:23:11.391Z';
-      // let shit = contest;
-      // shit.created = 4;
-      // console.log(contest.created);
       res.send({ contest: contest, formatedDateCreated: formatedDateCreated });
     })
-    // .catch(err => next(err));
     .catch(err => console.log(err))
 });
 
@@ -72,6 +67,11 @@ router.put(`${config.apiUrl}/edit-contest/:id`, (req, res, next) => {
       console.log('contest was updated', contest);
     })
     .catch(err => console.log(err));
+});
+
+// Index page
+router.get(`${config.apiUrl}/contestdates`, (req, res, next) => {
+  res.send('index page');
 });
 
 module.exports = router;

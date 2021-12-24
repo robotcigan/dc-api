@@ -7,6 +7,8 @@ const config = require('./configs/config');
 const router = require('./routes/main.route');
 const connection = require('./services/connections.service');
 
+const contestDates = require('./services/contestDates.service.js')
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Cache-Control');
@@ -18,9 +20,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
 
 
 // app.set('view engine', 'pug');
